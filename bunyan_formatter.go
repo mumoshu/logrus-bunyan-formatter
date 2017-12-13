@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/Sirupsen/logrus"
 	"os"
+	"time"
 )
 
 // See https://github.com/trentm/node-bunyan/blob/cbfaa9a7bd86c658dbb8333c894191d23b65be33/bin/bunyan#L62-L68
@@ -56,7 +57,7 @@ func (f *Formatter) Format(entry *logrus.Entry) ([]byte, error) {
 
 	timestampFormat := f.TimestampFormat
 	if timestampFormat == "" {
-		timestampFormat = logrus.DefaultTimestampFormat
+		timestampFormat = time.RFC3339
 	}
 
 	data["time"] = entry.Time.Format(timestampFormat)
